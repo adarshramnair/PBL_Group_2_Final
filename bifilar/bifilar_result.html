@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="lab.png">
+    <title>Bifilar Suspension - Calcute Result</title>
+    <link rel="icon" href="lab.png">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="heading">
+      <h1><img src="lab.png" height="60px" alt="lab_icon">VIRTUAL EXPERIMENTS</h1>
+    </div>
+    <div class="sidebar" align="left">
+     <nav>
+         <ul>
+         <h2>Bifilar Suspension</h2>
+         <li><a href=bifilar_aim.html>Aim</a></li>
+         <li><a href="bifilar_theory.html">Theory</a></li>
+         <li><a href="bifilar_procedure.html">Procedure</a></li>
+         <li><a href=# style="color: blue;">Calculate Result</a></li>
+         <li><a href="bifilar_compare.html">Compare Results</a></li>
+       </ul>
+       <a href="https://adarshramnair.github.io/PBL_Group_2_Final">Back to Main menu</a>
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </nav>
+    </div>
+    <div class="main_body">
+    <!-- Receiving inputs from the use -->
+    <form class="input_value">
+      <h3>Calculate Time Period</h3>
+      <img src="bifilar_diagram.jpg" alt="Diagram" width="30%" style="float:right; padding-right:15px;"> </img>
+      <h3>Enter Values:</h3>
+      <form>
+        <label for="length_rod">Length of rod (m):</label>&nbsp
+        <input type="number" step="0.0001" id="length_rod" name="Length of rod" value="0">
+        <br><br>
+        <label for="length_string">Length of each string (m):</label>&nbsp
+        <input type="number" step="0.0001" id="length_string" name="Lenth of each string" value="0">
+        <br><br>
+        <label for="longitudinal_distance">Longitudinal distance between two strings (m):</label>&nbsp
+        <input type="number" step="0.0001" id="longitudinal_distance" name="Longitudinal distance between two strings" value="0">
+        <br><br>
+      </form>
+        <!-- Sending data to script by clicking the button -->
+      <button onclick="timperiod()" type="button" name="Calculate">Calculate</button>
+      <br><br>
+      <script>
+        // Using Javascript to evaluate result
+        function timperiod()
+          {
+            const g = 9.80665;
+            const pi = 3.1416;
+            var string_len = document.getElementById('length_string').value;
+            var rod_len = document.getElementById('length_rod').value;
+            var long_dist = document.getElementById('longitudinal_distance').value;
+            if (string_len <= 0 || rod_len <= 0 || long_dist <= 0) {
+              var time_period_statement = "Every value should be more than zero.";
+            }else{
+            var time_period = 2*pi*(Math.sqrt(string_len*(rod_len**2)/(3*(long_dist**2)*g)));
+            time_period = time_period.toFixed(3);
+            var time_period_statement = "The time period is " + time_period + " sec.";
+            }
+            // Sending data back
+            document.getElementById('time_period_statement').innerHTML = time_period_statement;
+          }
+      </script>
+      <!-- Receiving result back -->
+      <h3>Result/Conclusion:</h3><br>
+      <span id="time_period_statement"></span>
+    </form>
+  </div>
+  </div>
+  <div class="footer">
+  <p>Group 2 - MEA 502, 510, 555, 562</p>
+  </div>
+  </body>
+</html>

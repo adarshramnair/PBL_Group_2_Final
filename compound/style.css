@@ -1,0 +1,50 @@
+body{
+  background-color: #F7EDD4;
+}
+th, td{
+  border: 1px solid;
+}
+.wrapper{
+  padding: 5px;
+}
+.heading{
+  position: relative;
+  border-style: solid;
+  background-color: #FFD770;
+  border-width: 2px;
+}
+.sidebar{
+  position: relative;
+  float: left;
+  padding-top: 10px;
+  width: 280px;
+  background-color: #FDED2A;
+}
+.sidebar ul a{
+  color: black;
+}
+.main_body{
+  padding-left: 300px;
+}
+.input_value label{
+  color: blue;
+}
+.sidebar li{
+  padding-top: 15px;
+}
+table{
+  padding-top: 10px;
+}
+.footer{
+  position: fixed;
+  padding-left: 15px;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #FFD770;
+  text-align: center;
+}
+.button{
+	border: none;
+	background-color: #4CAF50;
+}

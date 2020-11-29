@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="lab.png">
+    <title>Compound Pendulum - Calcute Result</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="heading">
+      <h1><img src="lab.png" height="60px" alt="lab_icon">VIRTUAL EXPERIMENTS</h1>
+    </div>
+    <div class="sidebar" align="left">
+     <nav>
+         <ul>
+         <h2>Compound Pendulum</h2>
+         <li><a href=compound_aim.html>Aim</a></li>
+         <li><a href="compound_theory.html">Theory</a></li>
+         <li><a href="compound_procedure.html">Procedure</a></li>
+         <li><a href=# style="color: blue;">Calculate Result</a></li>
+         <li><a href="compound_compare.html">Compare Results</a></li>
+       </ul>
+       <a href="https://adarshramnair.github.io/PBL_Group_2_Final">Back to Main menu</a>
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </nav>
+    </div>
+    <div class="main_body">
+    <h3>Calculate Time Period</h3>
+    <!-- Receiving inputs from the use -->
+  <details id="UCS">
+    <summary>For Compound Pendulum with Uniform Cross Section:</summary>
+    <form class="input_value">
+      <img src="set_up.png" alt="Diagram" width="30%" style="float:right; padding-right:15px;"> </img>
+      <h3>Enter Values:</h3>
+      <form>
+        <label for="length_pendulum">Length of Pendulum L (m)</label>&nbsp
+        <input type="number" step="0.0001" id="length_pendulum" name="Length of Pendulum" value="0">
+        <br><br>
+        <label for="length_from_cg">Dist. of C.G. to the point of rotation l (m):</label>&nbsp
+        <input type="number" step="0.0001" id="length_from_cg" name="Lenth from C.G." value="0">
+        <br><br>
+      </form>
+        <!-- Sending data to script by clicking the button -->
+      <button onclick="timperiod_ucs()" type="button" name="Calculate">Calculate</button>
+      <br><br>
+      <script>
+        // Using Javascript to evaluate result
+        function timperiod_ucs()
+          {
+            var g = 9.80665;
+            var pi = 3.1416;
+            var len_pend = document.getElementById('length_pendulum').value;
+            var length_from_cg = document.getElementById('length_from_cg').value;
+            if(len_pend <= 0 || length_from_cg <= 0){
+              var time_period_statement = "Both the values should be greter than zero";
+            }else if(length_from_cg > len_pend){
+              var time_period_statement = "Length from C.G. should not be greater than the length of pendulum "
+            }else{
+            var time_period = 2*pi*(Math.sqrt(2*len_pend/(3*g)));
+            time_period = time_period.toFixed(3);
+            var time_period_statement = "The time period is " + time_period + " sec";
+            }
+            // Sending data back
+            document.getElementById('time_period_statement_ucs').innerHTML = time_period_statement;
+          }
+      </script>
+      <!-- Receiving result back -->
+      <span id="time_period_statement_ucs"></span>
+    </form>
+  </details>
+  <br><br>
+<details id="NUCS">
+  <summary>For Compound Pendulum with Non-Uniform Cross Section:</summary>
+  <form class="input_value">
+    <img src="set_up_nucs.jpg" alt="Diagram" width="30%" style="float:right; padding-right:15px;"> </img>
+    <h3>Enter Values:</h3>
+    <form>
+      <label for="rad_gyr">Radius of Gyration [k] (m)</label>&nbsp
+      <input type="number" step="0.0001" id="k" name="Radius of Gyration" value="0">
+      <br><br>
+      <label for="length_from_cg">Dist. of C.G. to the point of rotation [h] (m):</label>&nbsp
+      <input type="number" step="0.0001" id="h" name="Length from C.G." value="0">
+      <br><br>
+    </form>
+      <!-- Sending data to script by clicking the button -->
+    <button onclick="timperiod_nucs()" type="button" name="Calculate">Calculate</button>
+    <br><br>
+    <script>
+      // Using Javascript to evaluate result
+      function timperiod_nucs()
+        {
+          var g = 9.80665;
+          var pi = 3.1416;
+          var k = document.getElementById('k').value;
+          var h = document.getElementById('h').value;
+          if(k<0){
+            var time_period_statement = "The value of 'k' cannot be lesser than zero.";
+          }else if (h<=0){
+            var time_period_statement = "The value of 'h' should be greater than zero.";
+          }else {
+          var time_period = 2*pi*(Math.sqrt((k*k+h*h)/(h*h*g)));
+          time_period = time_period.toFixed(3);
+          var time_period_statement = "The time period is " + time_period + " sec";
+          }
+          // Sending data back
+          document.getElementById('time_period_statement_nucs').innerHTML = time_period_statement;
+        }
+    </script>
+    <!-- Receiving result back -->
+    <span id="time_period_statement_nucs"></span>
+  </form>
+</details>
+  </div>
+  </div>
+  <div class="footer">
+  <p>Group 2 - MEA 502, 510, 555, 562</p>
+  </div>
+  </body>
+</html>

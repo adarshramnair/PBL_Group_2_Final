@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Compound Pendulum - Compare Result</title>
+    <link rel="icon" href="lab.png">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="heading">
+      <h1><img src="lab.png" height="60px" alt="lab_icon">VIRTUAL EXPERIMENTS</h1>
+    </div>
+    <div class="sidebar" align="left">
+      <nav>
+        <ul>
+         <h2>Compound Pendulum</h2>
+         <li><a href="compound_aim.html">Aim</a></li>
+         <li><a href="compound_theory.html">Theory</a></li>
+         <li><a href="compound_procedure.html">Procedure</a></li>
+         <li><a href="compound_result.html">Calculate Result</a></li>
+         <li><a href=# style="color: blue;">Compare Results</a></li>
+        </ul>
+        <a href="https://adarshramnair.github.io/PBL_Group_2_Final">Back to Main menu</a>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      </nav>
+    </div>
+    <div class="main_body">
+    <h3>Verify Practical Performance:</h3>
+  <details id="UCS">
+      <summary>For Compound Pendulum with Uniform Cross Section:</summary>
+      <img src="set_up.png" alt="Diagram" width="30%" style="float:right; padding-right:15px;"> </img>
+      <form>
+      <form>
+        <table>
+          <tr>
+            <th>Number of oscillations</th>
+            <th>Total time taken (sec)</th>
+            <th>Time Period (sec)</th>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_1" id="osc_1" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_1" id="tp_1" value="0"></td>
+            <td id="tpp_1_ucs" style="text-align:center"></td>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_2" id="osc_2" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_2" id="tp_2" value="0"></td>
+            <td id="tpp_2_ucs" style="text-align:center"></td>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_2" id="osc_3" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_2" id="tp_3" value="0"></td>
+            <td id="tpp_3_ucs" style="text-align:center"></td>
+          </tr>
+        </table>
+        <br>
+        <button onclick="table_cont_ucs()" type="button" name="Calculate_Time_period">Calculate time period</button>
+      </form>
+      <form class="input_value">
+      <br><br>
+      <label for="length_pendulum">Length of Pendulum L (m)</label>&nbsp
+      <input type="number" step="0.0001" id="length_pendulum" name="Length of Pendulum" value="0">
+      <br><br>
+      <label for="length_from_cg">Dist. of C.G. to the point of rotation l (m):</label>&nbsp
+      <input type="number" step="0.0001" id="length_from_cg" name="Lenth from C.G." value="0">
+      <br><br>
+      <button type="button" onclick="time_error_ucs()" name="Calculate_Error">Verify</button>
+      </form>
+    </form>
+      <script>
+        function table_cont_ucs()
+        {
+          var osc_1 = document.getElementById("osc_1").value;
+          var tp_1 = document.getElementById("tp_1").value;
+          if(osc_1 <= 0 || tp_1 <= 0){
+            tpp_1_r = "Invalid input";
+          }
+          else{
+          var tpp_1 = tp_1/osc_1;
+          var tpp_1_r = tpp_1.toFixed(3);
+          }
+          document.getElementById("tpp_1_ucs").innerHTML = tpp_1_r;
+          var osc_2 = document.getElementById("osc_2").value;
+          var tp_2 = document.getElementById("tp_2").value;
+          if(osc_2 <= 0 || tp_2 <= 0){
+            tpp_2_r = "Invalid input";
+          }
+          else{
+          var tpp_2 = tp_2/osc_2;
+          var tpp_2_r = tpp_2.toFixed(3);
+          }
+          document.getElementById("tpp_2_ucs").innerHTML = tpp_2_r;
+          var osc_3 = document.getElementById("osc_3").value;
+          var tp_3 = document.getElementById("tp_3").value;
+          if(osc_3 <= 0 || tp_3 <= 0){
+            tpp_3_r = "Invalid input";
+          }
+          else{
+          var tpp_3 = tp_3/osc_3;
+          var tpp_3_r = tpp_3.toFixed(3);
+          }
+          document.getElementById("tpp_3_ucs").innerHTML = tpp_3_r;
+        }
+        function time_error_ucs()
+          {
+            const g = 9.80665;
+            const pi = 3.1416;
+            var len_pend = document.getElementById('length_pendulum').value;
+            var cg_len = document.getElementById('length_from_cg').value;
+            var osc_1 = document.getElementById("osc_1").value;
+            var tp_1 = document.getElementById("tp_1").value;
+            var osc_2 = document.getElementById("osc_2").value;
+            var tp_2 = document.getElementById("tp_2").value;
+            var osc_3 = document.getElementById("osc_3").value;
+            var tp_3 = document.getElementById("tp_3").value;
+            if((osc_1 <= 0 || tp_1 <= 0 || osc_2 <= 0 || tp_2 <= 0 || osc_3 <= 0 || tp_3 <= 0) && (len_pend <= 0 || length_from_cg <= 0)){
+              var time_period_statement_1 = "Invalid input in table and other value/s.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if(osc_1 <= 0 || tp_1 <= 0 || osc_2 <= 0 || tp_2 <= 0 || osc_3 <= 0 || tp_3 <= 0){
+              var time_period_statement_1 = "Invalid input in Osciallation and Time period table.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if(len_pend <= 0 || cg_len <= 0){
+              var time_period_statement_1 = "Both the values should be greter than zero";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if(cg_len > len_pend){
+              var time_period_statement_1 = "Length from C.G. should not be greater than the length of pendulum "
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else{
+            var time_period_theory = 2*pi*(Math.sqrt(2*len_pend/(3*g)));
+            var time_period_theory_r = time_period_theory.toFixed(3);
+            var tpp_1 = tp_1/osc_1;
+            var tpp_2 = tp_2/osc_2;
+            var tpp_3 = tp_3/osc_3;
+            var time_period_prac = (tpp_1+tpp_2+tpp_3)/3;
+            var time_period_prac_r = time_period_prac.toFixed(3);
+            var error = (time_period_prac-time_period_theory)*100/time_period_theory;
+            if (error < 0){
+              error = error*(-1);
+            }
+            var error_r = error.toFixed(3);
+            var time_period_statement_1 = "The theoretical time period is " + time_period_theory_r + " sec."
+            var time_period_statement_2 = "The practical time period is "+time_period_prac_r+" sec."
+            var time_period_statement_3 = "Total error found is "+error_r+" %.";
+            }
+            // Sending data back
+            document.getElementById('time_period_statement_1_ucs').innerHTML = time_period_statement_1;
+            document.getElementById('time_period_statement_2_ucs').innerHTML = time_period_statement_2;
+            document.getElementById('time_period_statement_3_ucs').innerHTML = time_period_statement_3;
+          }
+      </script>
+      <p id="time_period_statement_1_ucs"></p>
+      <p id="time_period_statement_2_ucs"></p>
+      <p id="time_period_statement_3_ucs"></p>
+  </details>
+    <br><br>
+  <details id="NUCS">
+      <summary>For Compound Pendulum with Non-Uniform Cross Section:</summary>
+      <img src="set_up_nucs.jpg" alt="Diagram" width="30%" style="float:right; padding-right:15px;"> </img>
+      <form>
+      <form>
+        <table>
+          <tr>
+            <th>Number of oscillations</th>
+            <th>Total time taken (sec)</th>
+            <th>Time Period (sec)</th>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_1" id="osc_1_nucs" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_1" id="tp_1_nucs" value="0"></td>
+            <td id="tpp_1_nucs" style="text-align:center"></td>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_2" id="osc_2_nucs" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_2" id="tp_2_nucs" value="0"></td>
+            <td id="tpp_2_nucs" style="text-align:center"></td>
+          </tr>
+          <tr>
+            <td><input type="number" step="0.01" name="oscillation_2" id="osc_3_nucs" value="0"></td>
+            <td><input type="number" step="0.001" name="timeperiod_2" id="tp_3_nucs" value="0"></td>
+            <td id="tpp_3_nucs" style="text-align:center"></td>
+          </tr>
+        </table>
+        <br>
+        <button onclick="table_cont_nucs()" type="button" name="Calculate_Time_period">Calculate time period</button>
+      </form>
+      <form class="input_value">
+      <br><br>
+      <label for="rad_gyr">Radius of Gyration [k] (m)</label>&nbsp
+      <input type="number" step="0.0001" id="k" name="Radius of Gyration" value="0">
+      <br><br>
+      <label for="length_from_cg">Dist. of C.G. to the point of rotation [h] (m):</label>&nbsp
+      <input type="number" step="0.0001" id="h" name="Length from C.G." value="0">
+      <br><br>
+      <button type="button" onclick="time_error_nucs()" name="Calculate_Error">Verify</button>
+      </form>
+    </form>
+
+      <script>
+        function table_cont_nucs()
+        {
+          var osc_1 = document.getElementById("osc_1_nucs").value;
+          var tp_1 = document.getElementById("tp_1_nucs").value;
+          var osc_2 = document.getElementById("osc_2_nucs").value;
+          var tp_2 = document.getElementById("tp_2_nucs").value;
+          var osc_3 = document.getElementById("osc_3_nucs").value;
+          var tp_3 = document.getElementById("tp_3_nucs").value;
+          if(osc_1 <= 0 || tp_1 <= 0){
+            tpp_1_r = "Invalid input";
+          }
+          else{
+          var tpp_1 = tp_1/osc_1;
+          var tpp_1_r = tpp_1.toFixed(3);
+          }
+          document.getElementById("tpp_1_nucs").innerHTML = tpp_1_r;
+          if(osc_2 <= 0 || tp_2 <= 0){
+            tpp_2_r = "Invalid input";
+          }
+          else{
+          var tpp_2 = tp_2/osc_2;
+          var tpp_2_r = tpp_2.toFixed(3);
+          }
+          document.getElementById("tpp_2_nucs").innerHTML = tpp_2_r;
+          if(osc_3 <= 0 || tp_3 <= 0){
+            tpp_3_r = "Invalid input";
+          }
+          else{
+          var tpp_3 = tp_3/osc_3;
+          var tpp_3_r = tpp_3.toFixed(3);
+          }
+          document.getElementById("tpp_3_nucs").innerHTML = tpp_3_r;
+        }
+
+        function time_error_nucs()
+          {
+            var g = 9.80665;
+            var pi = 3.1416;
+            var k = document.getElementById('k').value;
+            var h = document.getElementById('h').value;
+            var osc_1 = document.getElementById("osc_1_nucs").value;
+            var tp_1 = document.getElementById("tp_1_nucs").value;
+            var osc_2 = document.getElementById("osc_2_nucs").value;
+            var tp_2 = document.getElementById("tp_2_nucs").value;
+            var osc_3 = document.getElementById("osc_3_nucs").value;
+            var tp_3 = document.getElementById("tp_3_nucs").value;
+            if((osc_1 <= 0 || tp_1 <= 0 || osc_2 <= 0 || tp_2 <= 0 || osc_3 <= 0 || tp_3 <= 0) && (k < 0 || h <= 0)){
+              var time_period_statement_1 = "Invalid input in table and other value/s.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if(osc_1 <= 0 || tp_1 <= 0 || osc_2 <= 0 || tp_2 <= 0 || osc_3 <= 0 || tp_3 <= 0){
+              var time_period_statement_1 = "Invalid input in Osciallation and Time period table.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if(k<0){
+              var time_period_statement_1 = "The value of 'k' cannot be lesser than zero.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else if (h<=0){
+              var time_period_statement_1 = "The value of 'h' should be greater than zero.";
+              var time_period_statement_2 = null;
+              var time_period_statement_3 = null;
+            }else{
+            var time_period_theory = 2*pi*(Math.sqrt((k*k+h*h)/(h*h*g)));
+            var time_period_theory_r = time_period_theory.toFixed(3);
+            var tpp_1 = tp_1/osc_1;
+            var tpp_2 = tp_2/osc_2;
+            var tpp_3 = tp_3/osc_3;
+            var time_period_prac = (tpp_1+tpp_2+tpp_3)/3;
+            var time_period_prac_r = time_period_prac.toFixed(3);
+            var error = (time_period_prac-time_period_theory)*100/time_period_theory;
+            if (error < 0){
+              error = error*(-1);
+            }
+            var error_r = error.toFixed(3);
+            var time_period_statement_1 = "The theoretical time period is " + time_period_theory_r + " sec."
+            var time_period_statement_2 = "The practical time period is "+time_period_prac_r+" sec."
+            var time_period_statement_3 = "Total error found is "+error_r+" %.";
+            }
+            // Sending data back
+            document.getElementById('time_period_statement_1_nucs').innerHTML = time_period_statement_1;
+            document.getElementById('time_period_statement_2_nucs').innerHTML = time_period_statement_2;
+            document.getElementById('time_period_statement_3_nucs').innerHTML = time_period_statement_3;
+          }
+      </script>
+      <p id="time_period_statement_1_nucs"></p>
+      <p id="time_period_statement_2_nucs"></p>
+      <p id="time_period_statement_3_nucs"></p>
+  </details>
+    </div>
+    </div>
+    <div class="footer">
+    <p>Group 2 - MEA 502, 510, 555, 562</p>
+    </div>
+  </body>
+</html>
